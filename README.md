@@ -1,16 +1,26 @@
-# JLCPCB API
+<p align="center">
+  <img src="img/jlcpcb_api.png" alt="JLC API Platform" width="900" />
+</p>
 
-Small Python client for JLCPCB's overseas OpenAPI, reverse-engineered from the Java SDK JARs in this repo.
-
-It supports:
-
-- JOP request signing with HMAC-SHA256
-- PCB endpoints
-- Component endpoints
-- 3D printing (`tdp`) endpoints
-- File uploads using the same `meta` + `file` multipart format as the Java SDK
+<p align="center">
+  Simple Python client for JLCPCB's overseas OpenAPI, reverse-engineered from the Java SDK JARs.
+</p>
 
 ## Install
+
+### uv
+
+```bash
+uv sync
+```
+
+or:
+
+```bash
+uv pip install -e .
+```
+
+### pip
 
 ```bash
 pip install -e .
@@ -18,20 +28,19 @@ pip install -e .
 
 ## Configure
 
-You need a JLC OpenAPI app with permissions enabled for the APIs you want to call.
-
-Required credentials:
+You need a JLC OpenAPI app with:
 
 - `app_id`
 - `access_key`
 - `secret_key`
+- the required API permissions enabled in JLC's console
 
-Optional environment variables used by `JLCPCBClient.from_env()`:
+Optional env vars for `JLCPCBClient.from_env()`:
 
 - `JLCPCB_APP_ID`
 - `JLCPCB_ACCESS_KEY`
 - `JLCPCB_SECRET_KEY`
-- `JLCPCB_ENDPOINT` default: `https://open.jlcpcb.com`
+- `JLCPCB_ENDPOINT`
 - `JLCPCB_CONTEXT_PATH`
 - `JLCPCB_RSA_PUBLIC_KEY`
 - `JLCPCB_RSA_PRIVATE_KEY`
@@ -60,5 +69,5 @@ print(result.data)
 ## Notes
 
 - Business success is `code == 200`.
-- HTTP `403` with `API insufficient permissions, access denied` means the app exists but is missing the required JLC API scope.
-- Run tests with `pytest -q`.
+- `403 API insufficient permissions, access denied` means the app exists but is missing JLC API scope.
+- Run tests with `pytest -q` or `uv run pytest -q`.
