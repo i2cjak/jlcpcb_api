@@ -8,6 +8,11 @@
 
 ## Install
 
+```bash
+git clone https://github.com/i2cjak/jlcpcb_api
+cd jlcpcb_api
+```
+
 ### uv
 
 ```bash
